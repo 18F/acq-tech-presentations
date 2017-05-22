@@ -14,21 +14,21 @@ to be.
 
 * Confidentiality
 * Integrity
-* Authorization
+* Authentication and Authorization
 
 ---
 
 ### A quick aside...
 
 Traditionally, the information security triad is .highlight[confidentiality],
-.highlight[integrity], and .highlight[availability].  Authorization is really
-part of confidentiality.
+.highlight[integrity], and .highlight[availability].  Authentication and
+authorization are really part of confidentiality.
 
 Availability isn't ***strictly*** concerned with the security of information
-but it is a critical part of system operations.  For our purposes, availability
-can generally be considered .highlight[someone else's problem].
+but it is a critical part of system .highlight[assurance].  For our purposes,
+availability can generally be considered .highlight[someone else's problem].
 
-Authorization is a complex topic and is more relevant outside of the operations
+Auth/auth is a complex topic and is more relevant outside of the operations
 world.  This is not to downplay the importance of availability or operations.
 .loud[The rest of this would be pointless if information resources weren't available!]
 
@@ -48,6 +48,16 @@ information in it
 of the data
 3. Does ***not*** ensure that the information is what you think it is,
 nor that you're talking to who you think you're talking to.
+
+.highlight[Data] is a stream of stuff going past you. It doesn't necessarily
+have any meaning. .highlight[Information] is the meaningful stuff you get
+from data when you understand its context.
+
+???
+Data is just a bunch of zeroes and ones in a file. If you don't understand
+the layout of the data, then it's meaningless to you. But if someone says,
+"Hey, that's an Excel file," now it has meaning. You open it up and view
+the information the data conveys.
 
 ---
 
@@ -85,7 +95,7 @@ and more.
 
 It assumes that other people already have access to your communications
 channel and attempts to make it impossible for them to read your
-information even though they can see it.
+information even though they can see your data.
 
 ---
 
@@ -120,16 +130,60 @@ without knowing how it was mixed up.
 
 ---
 
-### Confidentiality / .white[Crypto >] .highlight[Terms]
+### Confidentiality / .white[Crypto >] .highlight[Example]
 
-1. **Plaintext**
-> The original information, before it is encrypted or after it is decrypted
+Encryption has four parts: .highlight[plaintext], .highlight[cipher], .highlight[key],
+and .highlight[ciphertext].
 
-2. **Ciphertext**
-> The information in encrypted form, hopefully impossible to read
+.center[![](encryption01.png)]
 
-3. **Cipher**
-> The algorithm that describes how to turn plaintext into ciphertext and vice-versa
+---
+
+### Confidentiality / .white[Crypto >] .highlight[Example]
+
+That earlier example is real encryption!
+
+<table cellspacing="0" cellpadding="0">
+  <tr class="first-row">
+    <td>a</td>
+    <td>b</td>
+    <td>c</td>
+    <td>d</td>
+    <td>e</td>
+    <td>f</td>
+    <td>...</td>
+  </tr>
+  <tr class="second-row">
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td>a</td>
+    <td>b</td>
+    <td>c</td>
+    <td>d</td>
+    <td>...</td>
+  </tr>
+</table>
+
+This represents a cipher called .highlight[Caesar Shift] (or sometimes
+.highlight[Caesar cipher]) with a key of .highlight[2]. The key is
+the secret that tells you how the cipher was applied. In this case, it shifts the
+letters by 2.
+
+---
+
+### Confidentiality / .white[Crypto >] .highlight[Example]
+
+.center[![](encryption02.png)]
+
+If you give someone the ciphertext and they know the key, they can decrypt
+the plaintext.  Ideally, only people with the key can read the message.
+
+???
+This is really weak encryption.  The shape of the ciphertext gives us a lot
+of information we can use to figure out the plaintext.  Look at the third word:
+it's a single-letter word. How many of those are there?  Just two.  So C must
+either be A or I.  Now if we can figure out one more letter, we will know the
+key and we can decrypt the message.
 
 ---
 
@@ -139,10 +193,16 @@ without knowing how it was mixed up.
   * "shape" of the ciphertext (frequency of letters, number of words, length of
     information, etc.) can tell you about the plaintext
   * the cipher that was used makes it easier to attack the ciphertext
+  (.highlight[life pro tip:] .loud[don't treat the cipher as a secret])
 * Don't want to create weaknesses in the cipher
   * bad random number generation
   * mathematical oddities
   * "magic" numbers (i.e., back doors)
+
+???
+Only the key should be considered a secret.  In some cases, it's possible to
+figure out what cipher was used based on the ciphertext and that is
+considered completely okay.
 
 ---
 class: center, middle
@@ -270,6 +330,71 @@ received is the same information that was sent
 ---
 
 class: section, middle, center
+# Authentication
+who even *is* your neighbor?
+
+---
+
+### Authentication
+
+Authentication is about verifying the truth or validity of something.
+In computer world, we are most often talking about verifying a
+person's identity.
+
+---
+
+### Authentication
+
+# .white[Physical space]
+.loud[Authentication in meatspace]
+
+---
+
+### Authentication / .white[Physical space]
+
+1. **Driver's license**
+> It has a photograph, name, and security features that we can check
+to verify that the holder is who they say they are
+
+2. **Iris scan**
+> Iris patterns are believed to be completely unique. If your iris
+matches the one on file, you must be that person
+
+3. **Speakeasy**
+> Walt sent me
+
+---
+
+### Authentication
+
+# .white[Passwords and more!]
+.loud[Authentication in the digital world]
+
+---
+
+### Authentication / .white[Shared secret]
+
+If you know a secret and you tell me, then I can verify your identity
+by asking you to tell me that secret again.
+
+The canonical example is a .highlight[password].  Combined with your
+.highlight[username], I can know who you are...
+
+.loud[...as long as nobody else knows your password...]
+
+---
+
+### Authentication / .white[Two-factor]
+
+Something you know, something you have, something you are. Pick two.
+
+* **you know...** passwords
+* **you have...** your cell phone
+* **you are...** a fingerprint
+
+---
+
+class: section, middle, center
 # Authorization
 preventing your neighbor from reading your mail in the first place
 
@@ -279,7 +404,7 @@ preventing your neighbor from reading your mail in the first place
 
 Authorization is about making sure people can only see and do the things
 they're supposed to be able to see and do.  This requires being able to
-identify people, which is called .highlight[authentication].
+.highlight[authenticate] people.
 
 ---
 
@@ -323,9 +448,9 @@ and deny access to internal assets from outside.
 
 We also have "guards" that only allow authoried access
 
-* Password required to log into your computer
+* Access control lists say who can log into computers
 * Permission required to access someone else's files on Google Drive
-* Thumbprint required to access your phone
+* Your phone only unlocks for ***your*** thumbprint, not all of them
 
 These guards are all software that has to be carefully checked to verify that it
 is checking the user's credentials and only allowing the access they're supposed
@@ -345,68 +470,19 @@ These are called .highlight[permissions].
 
 ---
 
-### Authorization / .white[Access control >] .highlight[Keys]
+class: section
+### Authentication and authorization
 
-# .white[Cryptography]
-.loud[Yep, this again]
+They are similar, and they generally go hand-in-hand.  Once we authenticate a person,
+we then authorize them to see and do things.
 
----
-
-### Authorization / .white[Access control >] .highlight[Keys]
-
-Encryption has four parts: .highlight[plaintext], .highlight[cipher], .highlight[key],
-and .highlight[ciphertext].
-
-.center[![](encryption01.png)]
-
----
-
-### Authorization / .white[Access control >] .highlight[Keys]
-
-Remember this?
-
-<table cellspacing="0" cellpadding="0">
-  <tr class="first-row">
-    <td>a</td>
-    <td>b</td>
-    <td>c</td>
-    <td>d</td>
-    <td>e</td>
-    <td>f</td>
-    <td>...</td>
-  </tr>
-  <tr class="second-row">
-    <td class="empty"></td>
-    <td class="empty"></td>
-    <td>a</td>
-    <td>b</td>
-    <td>c</td>
-    <td>d</td>
-    <td>...</td>
-  </tr>
-</table>
-
-This is simple encryption! It represents a cipher called .highlight[Caesar Shift]
-(or sometimes .highlight[Caesar cipher]) with a key of .highlight[2]. The key is
-the secret that tells you how the cipher was applied. In this case, it shifts the
-letters by 2.
+* When you arrive at the airport, you show your driver's license to security.
+They scan it with the little blacklight.  They are .highlight[authenticating]
+your driver's license and validating that you are who claim to be.
+* When you board the aircraft, you scan your boarding pass.  The boarding agent
+is .highlight[authorizing] you to take a seat on that particular flight but
+not any of the other ones.
 
 ---
-
-### Authorization / .white[Access control >] .highlight[Keys]
-
-How about an example?
-
-.center[![](encryption02.png)]
-
----
-
-### Authorization / .white[Access control >] .highlight[Keys]
-
-How does this provide authorization? Only someone who knows the cipher and the
-.highlight[key] can decrypt the ciphertext.  If you only share the key with the
-people you want to read the message, then only they'll be able to read it.  The
-key is, well, a key!
-
-.loud[Life pro tip]: don't treat the cipher like a secret. It's usually pretty
-easy to tell what family of cipher was used
+class: middle center
+# .white[Questions?]
