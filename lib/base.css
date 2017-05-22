@@ -1,0 +1,32 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+body {
+  font-family: 'HelveticaNeue','Droid Serif';
+  background-color: rgb(21,35,58);
+  color: white;
+  font-size: 16pt;
+}
+h1, h2, h3 {
+  font-family: 'HelveticaNeue','Arimo';
+  font-weight: bold;
+  color: rgb(12,197,255);
+}
+.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+.remark-slide-content {
+  background: rgb(21, 35, 58);
+  font-size: 28px;
+}
+
+.highlight {
+  color: rgb(235, 255, 32);
+}
+
+.loud {
+  color: rgb(12, 197, 255);
+}
+
+.white {
+  color: white;
+}
