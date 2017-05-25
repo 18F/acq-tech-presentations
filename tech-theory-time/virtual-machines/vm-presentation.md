@@ -40,7 +40,7 @@ It just runs on .highlight[virtual] hardware
 
 ---
 
-### Virtual machines / .white[Virtual hardware]
+### Virtual machines / .white[virtual hardware]
 
 > &ldquo;Not physically existing but made by software to appear to do so&rdquo;
 
@@ -139,3 +139,49 @@ often takes less than a minute.
 ---
 
 ### Containers
+
+There are other kinds of virtualization, like containers (these are what
+.highlight[Docker] creates).  Containers are *not* entire virtual computers.
+
+Containers use what is called "operating system virtualization" instead of
+hardware virtualization like virtual machines use.
+
+## The host shares its operating system into the container
+
+---
+
+### Containers
+
+<table>
+  <tr class="apps">
+    <td>app</td>
+    <td>app</td>
+    <td>app</td>
+    <td rowspan="2" style="background: transparent; color: white;">⬅ container</td>
+  </tr>
+  <tr class="hardware">
+    <td colspan="3">container image</td>
+  </tr>
+  <tr class="apps">
+    <td colspan="3">hypervisor</td>
+    <td>apps...</td>
+  </tr>
+  <tr class="os">
+    <td colspan="4">host operating system</td>
+  </tr>
+  <tr class="hardware">
+    <td colspan="4">hardware</td>
+  </tr>
+</table>
+
+The .highlight[container image] keeps track of any changes the container makes to the
+operating system, but it _only_ stores the changes. Those changes are only visible to
+the container and don't affect the host!
+
+---
+
+### Containers / .white[advantages over VMs]
+
+* because they use the host's operating system, they turn on instantly - no boot-up
+* they also don't need as much storage or memory because they use the host's operating system
+* generally they only run a single application
