@@ -7,7 +7,6 @@ little computers inside your computer
 ### What's a real computer?
 
 * hardware - motherboard, processor, RAM, storage, video, USB
-* bootstrap firmware - super low-level software that starts up the hardware; BIOS, UEFI
 * operating system (OS) - lowest user-level software; Windows, MacOS, Linux
 * applications - Slack, Chrome, Atom
 
@@ -163,7 +162,7 @@ hardware virtualization like virtual machines use.
     <td colspan="3">container image</td>
   </tr>
   <tr class="apps">
-    <td colspan="3">hypervisor</td>
+    <td colspan="3">container manager</td>
     <td>apps...</td>
   </tr>
   <tr class="os">
@@ -185,3 +184,4 @@ the container and don't affect the host!
 * because they use the host's operating system, they turn on instantly - no boot-up
 * they also don't need as much storage or memory because they use the host's operating system
 * generally they only run a single application
+* they don't need much configuration - they inherit it from the host operating system
