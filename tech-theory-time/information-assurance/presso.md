@@ -14,23 +14,58 @@ to be.
 
 * Confidentiality
 * Integrity
-* Authentication and Authorization
+* Availability
+
+???
+
+This is the traditional information assurance triad.
 
 ---
 
-### A quick aside...
+### Keeping secrets secret
 
-Traditionally, the information security triad is .highlight[confidentiality],
-.highlight[integrity], and .highlight[availability].  Authentication and
-authorization are really part of confidentiality.
+Information assurance is about making sure people can only see the information
+they're supposed to see, and ensuring that the information is what it claims
+to be.
+
+* Confidentiality
+* Integrity
+* ~~Availability~~ .highlight[Authentication and Authorization]
 
 Availability isn't ***strictly*** concerned with the security of information
-but it is a critical part of system .highlight[assurance].  For our purposes,
+but it is a critical part of .highlight[information assurance].  For our purposes,
 availability can generally be considered .highlight[someone else's problem].
 
-Auth/auth is a complex topic and is more relevant outside of the operations
-world.  This is not to downplay the importance of availability or operations.
-.loud[The rest of this would be pointless if information resources weren't available!]
+???
+
+But for this talk, we're going to shift our focus a little bit.  Auth/auth
+technically fall under confidentiality, but it's a complex topic and is more
+relevant to us.
+
+The "someone else" we leave to "availability" here is
+operations staff, like the IT folks responsible for making sure the servers
+stay up or that a denial-of-service attack is being dealt with.  It's a hard
+job, but also not one that we will have to address very often.
+
+---
+
+### The balancing act
+
+One of the first lessons of information assurance is that we must balance
+security with the ability to do work (i.e., security vs. convenience).
+
+--
+count: false
+
+## The "lock it all down" mentality is in direct opposition to one of the fundamental tenets of information assurance.
+
+???
+
+There's also a recognition that "perfect" security is impossible.  Instead,
+we strive for "good enough," which takes into account the sensitivity of
+the information and how hard someone is realistically likely to work to
+get it.  The goal is to make it hard enough that an adversary won't bother,
+or that if they do, it will take long enough that it's no longer relevant.
 
 ---
 
@@ -200,9 +235,18 @@ key and we can decrypt the message.
   * "magic" numbers (i.e., back doors)
 
 ???
+
+E is the most common letter in English writing, T is the second most, etc.
+
 Only the key should be considered a secret.  In some cases, it's possible to
 figure out what cipher was used based on the ciphertext and that is
 considered completely okay.
+
+### NSA magic number
+
+NSA may have picked parameters for an algorithm that are highly correlated
+mathematically, in a way that is difficult to prove.  If so, they created a
+backdoor in that algorithm.
 
 ---
 class: center, middle
@@ -213,7 +257,7 @@ class: center, middle
 
 ### Confidentiality / .white[Crypto >] .highlight[It's hard!]
 
-Always use well-known, well-established encryption ciphers, particularly those
+Always use well-known, well-established cryptographic ciphers, particularly those
 vetted by NIST.  These ciphers have been carefully developed and researched
 by dedicated cryptographers and mathematicians to root out as many hidden
 mistakes as possible.
@@ -237,6 +281,32 @@ generally be avoided:
 
 On the internet, web servers that support these ciphers in SSL are considered
 to be at risk.
+
+???
+
+### DES
+
+The granddaddy of widespread ciphers, and the granddaddy of insecure ones.  Developed
+in the 1970s, blessed by FIPS in 1977.  That blessing led to fast adoption,
+but also lots of attention.  By the mid-80s, there were lots of theoretical ways to
+break it, but in the late 90s, it was officially and practically broken.
+
+### 3DES
+
+The biggest problem with DES was the short, 56-bit key.  3DES was designed to allow
+a longer key without redesigning the entire algorithm - they would have three 56-bit
+keys instead of just one, or effectively 168 bits.  But there were some quirks that
+resulted in only two of the keys being effective, so it was limited to 112 bits at
+best.  But due to some other mistakes, NIST currently says it's effectively only 80 bits.
+
+3DES is still considered secure enough by NIST, but the broader internet community
+encourages moving away from it - it will probably be broken soon.
+
+### RC4
+
+It was created in 1987 and was super fast, leading to widespread adoption,
+including in SSL (HTTPS).  But it was banned from SSL in 2015 - it was suspected
+that state actors had the ability to break arbitrary RC4.
 
 ---
 
@@ -293,26 +363,32 @@ in such a way that it cannot be transformed back.
 
 ### Integrity / .white[Crypto]
 
-These algorithms are called cryptographic hash functions. When you get some data
+These algorithms are called cryptographic hash functions. When you put some data
 in, the result is called a hash (sometimes they're called digests or fingerprints).
 
 `hash("Hello world") => 3e25960a79dbc69b674cd4ec67a72c62`
 
 .highlight[(real example!)]
 
+???
+
+This is using a hash algorithm called MD5.
+
 ---
 
 ### Integrity / .white[Crypto >] .highlight[Hash properties]
 
-1. **One-way**
-> Once data is used to compute a hash, it should be impossible to get back to
-the original data from the hash
+1. **One-way**  
+It should be impossible to go from a hash back to the original data
 
-2. **Unique**
-> Very, very unlikely that two different data will result in the same hash
+2. **Unique**  
+Different data should *always* produce different hashes
 
-3. **Easy to make**
-> Making a hash is mathematically easy to do (but not necessarily *fast*)
+3. **Repeatable**  
+The same data should *always* produce the same hash
+
+4. **Easy to make**  
+Making a hash is mathematically easy
 
 ---
 
@@ -326,6 +402,17 @@ Otherwise, it has been tampered with.
 
 This is called "fingerprinting" - using a hash to ensure the information you
 received is the same information that was sent
+
+???
+
+out-of-band
+
+This is a contrived example, you wouldn't actually do this by hand.
+But if you have digital signatures turned on in your email, for example,
+it does this for you behind the scenes.  It's a little more complicated
+than our example, but this is the gist of it.
+
+downloads
 
 ---
 
@@ -392,6 +479,10 @@ Something you know, something you have, something you are. Pick two.
 * **you have...** your cell phone
 * **you are...** a fingerprint
 
+???
+
+know - financial services; addresses, car, loans, etc.
+
 ---
 
 class: section, middle, center
@@ -442,11 +533,16 @@ Like in physical space, we can have "digital walls" that prevent access to digit
 resources.  Mostly these are .highlight[firewalls], devices that sit on the network
 and deny access to internal assets from outside.
 
+???
+
+We can use a VPN to make a private connection to the internal network from outside.
+That way, we can access stuff that the firewall is protecting.
+
 ---
 
 ### Authorization / .white[Access control >] .highlight[Guards]
 
-We also have "guards" that only allow authoried access
+We also have "guards" that only allow authorized access
 
 * Access control lists say who can log into computers
 * Permission required to access someone else's files on Google Drive
@@ -484,5 +580,14 @@ is .highlight[authorizing] you to take a seat on that particular flight but
 not any of the other ones.
 
 ---
+
 class: middle center
 # .white[Questions?]
+
+---
+
+### Some fun extra reading
+
+* [All about letter frequency analysis](https://en.wikipedia.org/wiki/Letter_frequency)
+* [NSA magic number backdoor](https://arstechnica.com/security/2014/01/how-the-nsa-may-have-put-a-backdoor-in-rsas-cryptography-a-technical-primer/)
+* [A (dated) history of DES](http://www.umsl.edu/~siegelj/information_theory/projects/des.netau.net/des%20history.html)
