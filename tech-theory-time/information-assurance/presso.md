@@ -236,6 +236,8 @@ key and we can decrypt the message.
 
 ???
 
+E is the most common letter in English writing, T is the second most, etc.
+
 Only the key should be considered a secret.  In some cases, it's possible to
 figure out what cipher was used based on the ciphertext and that is
 considered completely okay.
@@ -581,3 +583,11 @@ not any of the other ones.
 
 class: middle center
 # .white[Questions?]
+
+---
+
+### Some fun extra reading
+
+* [All about letter frequency analysis](https://en.wikipedia.org/wiki/Letter_frequency)
+* [NSA magic number backdoor](https://arstechnica.com/security/2014/01/how-the-nsa-may-have-put-a-backdoor-in-rsas-cryptography-a-technical-primer/)
+* [A (dated) history of DES](http://www.umsl.edu/~siegelj/information_theory/projects/des.netau.net/des%20history.html)
