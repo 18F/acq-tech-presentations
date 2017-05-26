@@ -43,6 +43,12 @@ It just runs on .highlight[virtual] hardware
 
 > &ldquo;Not physically existing but made by software to appear to do so&rdquo;
 
+???
+
+If you look up the word "virtual" in the dictionary, there's a standalone definition
+for the word as it applies to computing.  This is it.  It's not super helpful.  The
+standard definition is "almost as described, but not completely by definition."
+
 --
 count: false
 
@@ -50,6 +56,11 @@ Software applications can manage the way other applications can use the hardware
 As far as the second application can tell, it's using the hardware directly, but
 in fact, the first application is managing how it uses the hardware.  The first
 application has created .highlight[virtual hardware].
+
+???
+The second application think it's looking at actual hardware. It's...  almost as
+described.  In fact, the second application is looking at another application that
+is mediating its view of the hardware.
 
 --
 count: false
@@ -121,6 +132,12 @@ see the host's network activity.
 The host can still see everything, but in practice hosts generally don't peak into
 guests except to figure out problems.
 
+???
+
+Isolation is a huge deal here.  It means that the guest can't compromise the host.  That's
+a security benefit, but it's also an operational benefit - if the VM crashes, it doesn't
+take the host down with it.  You're basically creating little isolated boxes of risk.
+
 ---
 
 ### Virtual machines / .white[the cloud]
@@ -131,9 +148,10 @@ Using virtual machines, cloud providers can turn a fixed amount of hardware into
 variable number of computers.  They can add computers as needed without necessarily
 having to add hardware.
 
-And they can rely on the hypervisors to automate a lot of the creation process.  Many
-data centers are heavily automated, to the point that creating a new virtual machine
-often takes less than a minute.
+And they can let the hypervisors automate a lot of the creation process.  It's not unusual
+to be able to create a new virtual machine in less than a minute.
+
+cloud.gov is on virtual machines in an Amazon data center
 
 ---
 
@@ -183,5 +201,24 @@ the container and don't affect the host!
 
 * because they use the host's operating system, they turn on instantly - no boot-up
 * they also don't need as much storage or memory because they use the host's operating system
-* generally they only run a single application
 * they don't need much configuration - they inherit it from the host operating system
+* generally they only run a single application
+* more isolation - applications are isolated from each other rather than just machines
+
+---
+
+### Containers / .white[the cloud]
+
+## .white[More and more of the applications in the cloud are in containers]
+
+Using containers, cloud providers can put ***even more stuff*** on the same amount of hardware.
+It also increases security and reliability because the containers are isolated from each other -
+one can't steal data from its neighbor, and if it crashes, it crashes alone
+
+cloud.gov apps live in containers
+
+---
+class: middle center
+# .white[Questions?]
+
+---
