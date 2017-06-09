@@ -136,10 +136,20 @@ information even though they can see your data.
 
 ---
 
-### Confidentiality / .white[Crypto]
+### Confidentiality / .white[Crypto >] .highlight[Encryption]
 
 Encryption is mixing up some information so people can't read it
-without knowing how it was mixed up.
+without knowing how it was mixed up.  It consists of four parts:
+.highlight[plaintext], .highlight[cipher], .highlight[key], and
+.highlight[ciphertext].
+
+.center[![](encryption01.png)]
+
+---
+
+### Confidentiality / .white[Crypto >] .highlight[Encryption]
+
+You've probably done encryption!
 
 <table cellspacing="0" cellpadding="0">
   <tr class="first-row">
@@ -203,80 +213,6 @@ without knowing how it was mixed up.
 .loud[a] becomes .highlight[y], .loud[b] becomes .highlight[z],
 .loud[c] becomes .highlight[a], and so on...
 
----
-
-### Confidentiality / .white[Crypto >] .highlight[Example]
-
-Encryption has four parts: .highlight[plaintext], .highlight[cipher], .highlight[key],
-and .highlight[ciphertext].
-
-.center[![](encryption01.png)]
-
----
-
-### Confidentiality / .white[Crypto >] .highlight[Example]
-
-That earlier example is real encryption!
-
-<table cellspacing="0" cellpadding="0">
-  <tr class="first-row">
-    <td>a</td>
-    <td>b</td>
-    <td>c</td>
-    <td>d</td>
-    <td>e</td>
-    <td>f</td>
-    <td>g</td>
-    <td>h</td>
-    <td>i</td>
-    <td>j</td>
-    <td>k</td>
-    <td>l</td>
-    <td>m</td>
-    <td>n</td>
-    <td>o</td>
-    <td>p</td>
-    <td>q</td>
-    <td>r</td>
-    <td>s</td>
-    <td>t</td>
-    <td>u</td>
-    <td>v</td>
-    <td>w</td>
-    <td>x</td>
-    <td>y</td>
-    <td>z</td>
-  </tr>
-  <tr class="second-row">
-    <td>y</td>
-    <td>z</td>
-    <td>a</td>
-    <td>b</td>
-    <td>c</td>
-    <td>d</td>
-    <td>e</td>
-    <td>f</td>
-    <td>g</td>
-    <td>h</td>
-    <td>i</td>
-    <td>j</td>
-    <td>k</td>
-    <td>l</td>
-    <td>m</td>
-    <td>n</td>
-    <td>o</td>
-    <td>p</td>
-    <td>q</td>
-    <td>r</td>
-    <td>s</td>
-    <td>t</td>
-    <td>u</td>
-    <td>v</td>
-    <td>w</td>
-    <td>x</td>
-  </tr>
-</table>
-
 This represents a cipher called .highlight[Caesar Shift] (or sometimes
 .highlight[Caesar cipher]) with a key of .highlight[2]. The key is
 the secret that tells you how the cipher was applied. In this case, it shifts the
@@ -284,7 +220,7 @@ letters by 2.
 
 ---
 
-### Confidentiality / .white[Crypto >] .highlight[Example]
+### Confidentiality / .white[Crypto >] .highlight[Encryption]
 
 .center[![](encryption02.png)]
 
