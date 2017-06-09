@@ -142,7 +142,20 @@ without knowing how it was mixed up.  It consists of four parts:
 .highlight[plaintext], .highlight[cipher], .highlight[key], and
 .highlight[ciphertext].
 
-.center[![](encryption01.png)]
+.crypto-splainer[
+  .plaintext-scroll[![](scroll3.svg)]
+  .scroll-text[.plaintext-scroll-text[This is a super secret message only Alice should see]]
+  .label-plaintext[plaintext]
+  .key[![](key.svg)]
+  .label-key[key]
+  .cipher-block[cipher]
+  .ciphertext-scroll[![](scroll3.svg)]
+  .arrow-p2c[![](arrow.svg)]
+  .arrow-k2c[![](arrow.svg)]
+  .arrow-c2c[![](arrow.svg)]
+  .scroll-text[.ciphertext-scroll-text[ae661d08d1c a6efcb82b7b 19a31bf4f11 6c5de2f489f]]
+  .label-ciphertext[ciphertext]
+]
 
 ---
 
@@ -180,6 +193,11 @@ You've probably done encryption!
     <td>z</td>
   </tr>
   <tr class="second-row">
+    <td>t</td>
+    <td>u</td>
+    <td>v</td>
+    <td>w</td>
+    <td>x</td>
     <td>y</td>
     <td>z</td>
     <td>a</td>
@@ -201,29 +219,38 @@ You've probably done encryption!
     <td>q</td>
     <td>r</td>
     <td>s</td>
-    <td>t</td>
-    <td>u</td>
-    <td>v</td>
-    <td>w</td>
-    <td>x</td>
   </tr>
 </table>
 
-.loud[a] becomes .highlight[y], .loud[b] becomes .highlight[z],
-.loud[c] becomes .highlight[a], and so on...
+.loud[a] becomes .highlight[t], .loud[b] becomes .highlight[u],
+.loud[c] becomes .highlight[v], and so on...
 
 --
 
 This represents a cipher called .highlight[Caesar Shift] (or sometimes
-.highlight[Caesar cipher]) with a key of .highlight[2]. The key is
+.highlight[Caesar cipher]) with a key of .highlight[7]. The key is
 the secret that tells you how the cipher was applied. In this case, it shifts the
-letters by 2.
+letters by 7.
 
 ---
 
 ### Confidentiality / .white[Crypto >] .highlight[Encryption]
 
-.center[![](encryption02.png)]
+.crypto-splainer[
+  .plaintext-scroll[![](scroll3.svg)]
+  .scroll-text[.plaintext-scroll-text[This is a super secret message only Alice should see]]
+  .label-plaintext[plaintext]
+  .key[![](key.svg)]
+  .key-text[7]
+  .label-key[key]
+  .cipher-block[Caesar shift]
+  .ciphertext-scroll[![](scroll3.svg)]
+  .arrow-p2c[![](arrow.svg)]
+  .arrow-k2c[![](arrow.svg)]
+  .arrow-c2c[![](arrow.svg)]
+  .scroll-text[.ciphertext-scroll-text[Aopz pz h zbwly zljyla tlzzhnl vusf Hspjl zovbsk zll]]
+  .label-ciphertext[ciphertext]
+]
 
 If you give someone the ciphertext and they know the key, they can decrypt
 the plaintext.  Ideally, only people with the key can read the message.
@@ -231,7 +258,7 @@ the plaintext.  Ideally, only people with the key can read the message.
 ???
 This is really weak encryption.  The shape of the ciphertext gives us a lot
 of information we can use to figure out the plaintext.  Look at the third word:
-it's a single-letter word. How many of those are there?  Just two.  So C must
+it's a single-letter word. How many of those are there?  Just two.  So H must
 either be A or I.  Now if we can figure out one more letter, we will know the
 key and we can decrypt the message.
 
