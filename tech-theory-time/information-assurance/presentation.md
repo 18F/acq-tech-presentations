@@ -55,7 +55,6 @@ One of the first lessons of information assurance is that we must balance
 security with the ability to do work (i.e., security vs. convenience).
 
 --
-count: false
 
 ## The "lock it all down" mentality is in direct opposition to one of the fundamental tenets of information assurance.
 
@@ -63,8 +62,8 @@ count: false
 
 There's also a recognition that "perfect" security is impossible.  Instead,
 we strive for "good enough," which takes into account the sensitivity of
-the information and how hard someone is realistically likely to work to
-get it.  The goal is to make it hard enough that an adversary won't bother,
+the information and how much effort someone is realistically likely to put into
+getting it.  The goal is to make it hard enough that an adversary won't bother,
 or that if they do, it will take long enough that it's no longer relevant.
 
 ---
@@ -90,9 +89,11 @@ from data when you understand its context.
 
 ???
 Data is just a bunch of zeroes and ones in a file. If you don't understand
-the layout of the data, then it's meaningless to you. But if someone says,
-"Hey, that's an Excel file," now it has meaning. You open it up and view
-the information the data conveys.
+the structure of the data, then it's meaningless to you. But if someone
+says, "Hey, that's an Excel file," now it has meaning. You open it up and
+view the information the data conveys.
+
+This distinction comes from information theory.
 
 ---
 
@@ -134,49 +135,20 @@ information even though they can see your data.
 
 ---
 
-### Confidentiality / .white[Crypto]
+### Confidentiality / .white[Crypto >] .highlight[Encryption]
 
 Encryption is mixing up some information so people can't read it
-without knowing how it was mixed up.
-
-<table cellspacing="0" cellpadding="0">
-  <tr class="first-row">
-    <td>a</td>
-    <td>b</td>
-    <td>c</td>
-    <td>d</td>
-    <td>e</td>
-    <td>f</td>
-    <td>...</td>
-  </tr>
-  <tr class="second-row">
-    <td class="empty"></td>
-    <td class="empty"></td>
-    <td>a</td>
-    <td>b</td>
-    <td>c</td>
-    <td>d</td>
-    <td>...</td>
-  </tr>
-</table>
-
-.loud[c] becomes .highlight[a], .loud[d] becomes .highlight[b],
-.loud[e] becomes .highlight[c], and so on...
-
----
-
-### Confidentiality / .white[Crypto >] .highlight[Example]
-
-Encryption has four parts: .highlight[plaintext], .highlight[cipher], .highlight[key],
-and .highlight[ciphertext].
+without knowing how it was mixed up.  It consists of four parts:
+.highlight[plaintext], .highlight[cipher], .highlight[key], and
+.highlight[ciphertext].
 
 .center[![](encryption01.png)]
 
 ---
 
-### Confidentiality / .white[Crypto >] .highlight[Example]
+### Confidentiality / .white[Crypto >] .highlight[Encryption]
 
-That earlier example is real encryption!
+You've probably done encryption!
 
 <table cellspacing="0" cellpadding="0">
   <tr class="first-row">
@@ -186,18 +158,61 @@ That earlier example is real encryption!
     <td>d</td>
     <td>e</td>
     <td>f</td>
-    <td>...</td>
+    <td>g</td>
+    <td>h</td>
+    <td>i</td>
+    <td>j</td>
+    <td>k</td>
+    <td>l</td>
+    <td>m</td>
+    <td>n</td>
+    <td>o</td>
+    <td>p</td>
+    <td>q</td>
+    <td>r</td>
+    <td>s</td>
+    <td>t</td>
+    <td>u</td>
+    <td>v</td>
+    <td>w</td>
+    <td>x</td>
+    <td>y</td>
+    <td>z</td>
   </tr>
   <tr class="second-row">
-    <td class="empty"></td>
-    <td class="empty"></td>
+    <td>y</td>
+    <td>z</td>
     <td>a</td>
     <td>b</td>
     <td>c</td>
     <td>d</td>
-    <td>...</td>
+    <td>e</td>
+    <td>f</td>
+    <td>g</td>
+    <td>h</td>
+    <td>i</td>
+    <td>j</td>
+    <td>k</td>
+    <td>l</td>
+    <td>m</td>
+    <td>n</td>
+    <td>o</td>
+    <td>p</td>
+    <td>q</td>
+    <td>r</td>
+    <td>s</td>
+    <td>t</td>
+    <td>u</td>
+    <td>v</td>
+    <td>w</td>
+    <td>x</td>
   </tr>
 </table>
+
+.loud[a] becomes .highlight[y], .loud[b] becomes .highlight[z],
+.loud[c] becomes .highlight[a], and so on...
+
+--
 
 This represents a cipher called .highlight[Caesar Shift] (or sometimes
 .highlight[Caesar cipher]) with a key of .highlight[2]. The key is
@@ -206,7 +221,7 @@ letters by 2.
 
 ---
 
-### Confidentiality / .white[Crypto >] .highlight[Example]
+### Confidentiality / .white[Crypto >] .highlight[Encryption]
 
 .center[![](encryption02.png)]
 
@@ -237,6 +252,8 @@ key and we can decrypt the message.
 ???
 
 E is the most common letter in English writing, T is the second most, etc.
+Think of *Wheel of Fortune*: R, S, T, L, N, and E are all near the top of
+the list of letters when ranked by how common they are in English text.
 
 Only the key should be considered a secret.  In some cases, it's possible to
 figure out what cipher was used based on the ciphertext and that is
