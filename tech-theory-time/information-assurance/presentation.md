@@ -55,7 +55,6 @@ One of the first lessons of information assurance is that we must balance
 security with the ability to do work (i.e., security vs. convenience).
 
 --
-count: false
 
 ## The "lock it all down" mentality is in direct opposition to one of the fundamental tenets of information assurance.
 
@@ -212,6 +211,8 @@ You've probably done encryption!
 
 .loud[a] becomes .highlight[y], .loud[b] becomes .highlight[z],
 .loud[c] becomes .highlight[a], and so on...
+
+--
 
 This represents a cipher called .highlight[Caesar Shift] (or sometimes
 .highlight[Caesar cipher]) with a key of .highlight[2]. The key is
