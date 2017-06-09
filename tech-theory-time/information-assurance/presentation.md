@@ -248,7 +248,7 @@ letters by 7.
   .arrow-p2c[![](arrow.svg)]
   .arrow-k2c[![](arrow.svg)]
   .arrow-c2c[![](arrow.svg)]
-  .scroll-text[.ciphertext-scroll-text[Aopz pz h zbwly zljyla tlzzhnl vusf Hspjl zovbsk zll]]
+  .scroll-text[.ciphertext-scroll-text[Mabl bl t lnixk lxvkxm fxlltzx hger Tebvx lahnew lxx]]
   .label-ciphertext[ciphertext]
 ]
 
@@ -258,7 +258,7 @@ the plaintext.  Ideally, only people with the key can read the message.
 ???
 This is really weak encryption.  The shape of the ciphertext gives us a lot
 of information we can use to figure out the plaintext.  Look at the third word:
-it's a single-letter word. How many of those are there?  Just two.  So H must
+it's a single-letter word. How many of those are there?  Just two.  So T must
 either be A or I.  Now if we can figure out one more letter, we will know the
 key and we can decrypt the message.
 
